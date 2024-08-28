@@ -1,10 +1,10 @@
 <template>
   <div class="home-page">
     <!-- Hero Section -->
-    <div class="hero-section text-center bg-dark text-white py-5">
+    <div class="hero-section text-center py-5">
       <h1>Welcome to Tongue Tied</h1>
       <p>Discover our stylish collection of ties</p>
-      <a href="/products" class="btn btn-light btn-lg">Shop Now</a>
+      <a href="/products" class="btn btn-gold btn-lg">Shop Now</a>
     </div>
 
     <!-- Featured Products Section -->
@@ -21,13 +21,13 @@
             <div class="card-body">
               <h5 class="card-title">Classic Silk Tie</h5>
               <p class="card-text">R450.99</p>
-              <a href="#" class="btn btn-primary">View Product</a>
+              <a href="/products" class="btn btn-primary">View Product</a>
             </div>
           </div>
         </div>
         <div class="col-md-3 mb-4">
           <div class="card">
-            <div class="badge bg-success position-absolute mt-2 ms-2">
+            <div class="badge bg-gold position-absolute mt-2 ms-2">
               New Arrival
             </div>
             <img
@@ -38,7 +38,7 @@
             <div class="card-body">
               <h5 class="card-title">Stylish Tie</h5>
               <p class="card-text">R349.99</p>
-              <a href="#" class="btn btn-primary">View Product</a>
+              <a href="/products" class="btn btn-primary">View Product</a>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
             <div class="card-body">
               <h5 class="card-title">Slim Wool Blend Tie</h5>
               <p class="card-text">R499.99</p>
-              <a href="#" class="btn btn-primary">View Product</a>
+              <a href="/products" class="btn btn-primary">View Product</a>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@
               <p class="card-text">
                 Elevate your formal look with our range of ties
               </p>
-              <a href="#" class="btn btn-primary">Shop Now</a>
+              <a href="/products" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@
               <p class="card-text">
                 Stay stylish even on casual days
               </p>
-              <a href="#" class="btn btn-primary">Shop Now</a>
+              <a href="/products" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@
     </div>
 
     <!-- Sign Up for Updates Section -->
-    <div class="sign-up-section bg-light py-5">
+    <div class="sign-up-section py-5">
       <div class="container">
         <h2 class="text-center mb-4">Sign Up for Updates</h2>
         <div class="d-flex justify-content-center">
@@ -154,13 +154,39 @@ export default {
 </script>
 
 <style scoped>
+/* Apply color palette */
+
+body {
+  background-color: #f5f5f5; /* Cream White */
+}
+
 .hero-section {
-  background-color: #343a40;
+  background-color: #2c3e50; /* Navy Blue */
+  color: #ffffff;
+}
+
+.btn-primary {
+  background-color: #2c3e50; /* Navy Blue */
+  border-color: #2c3e50;
+}
+
+.btn-gold {
+  background-color: #f39c12; /* Gold */
+  border-color: #f39c12;
+  color: #2c3e50; /* Navy Blue */
+}
+
+.btn-gold:hover {
+  background-color: #e08e0b; /* Darker Gold */
+  border-color: #e08e0b;
+}
+
+.sign-up-section {
+  background-color: #ffffff; /* Cream White */
 }
 
 .card {
-  overflow: hidden;
-  position: relative;
+  border: 1px solid #e0e0e0; /* Light border */
 }
 
 .card img {
@@ -172,34 +198,28 @@ export default {
 }
 
 .card .badge {
-  top: 0;
-  left: 0;
-  padding: 0.5rem 1rem;
+  background-color: #f39c12; /* Gold */
 }
 
-.sign-up-section input {
-  width: 100%;
-  margin-bottom: 0.5rem;
+.card-title, .card-text {
+  color: #2c3e50; /* Navy Blue */
 }
 
-.sign-up-section button {
-  width: 100%;
+.form-control {
+  border-color: #2c3e50; /* Navy Blue */
 }
 
-footer {
-  background-color: #343a40;
+.form-text {
+  color: #6c757d; /* Neutral */
 }
 
-footer p {
-  margin: 0;
+.btn-dark {
+  background-color: #2c3e50; /* Navy Blue */
+  border-color: #2c3e50;
 }
 
-footer a {
-  color: #f8f9fa;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
+.btn-dark:hover {
+  background-color: #1a242f; /* Darker Navy Blue */
+  border-color: #1a242f;
 }
 </style>

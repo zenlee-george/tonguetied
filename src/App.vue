@@ -22,7 +22,7 @@ export default {
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Playfair Display', serif;
   background-color: #ffffff;
 }
 </style>
