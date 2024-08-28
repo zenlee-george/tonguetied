@@ -1,83 +1,85 @@
 <template>
-    <div class="signup">
-      <h1>Sign Up</h1>
-      <form @submit.prevent="signup">
+  <div class="auth-page">
+    <div class="auth-card">
+      <h2 class="text-center">Sign Up</h2>
+      <form action="https://formspree.io/f/mdknblad" method="POST">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input v-model="form.name" id="name" required />
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" class="form-control" required />
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input v-model="form.email" id="email" type="email" required />
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" required />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input v-model="form.password" id="password" type="password" required />
+          <input type="password" id="password" name="password" class="form-control" required />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" class="btn btn-gold btn-block">Sign Up</button>
       </form>
+      <p class="text-center mt-3">
+        Already have an account? <router-link to="/login">Login here</router-link>.
+      </p>
     </div>
-  </template>
-  
-  <script>
-  import { ref } from 'vue';
-  import { useRouter } from 'vue-router';
-  
-  export default {
-    name: 'Signup',
-    setup() {
-      const form = ref({
-        name: '',
-        email: '',
-        password: '',
-      });
-  
-      const router = useRouter();
-  
-      const signup = () => {
-        alert(`Welcome, ${form.value.name}!`);
-        router.push('/login');
-      };
-  
-      return {
-        form,
-        signup,
-      };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .signup {
-    padding: 2rem;
-    background-color: #ffffff;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333366;
-  }
-  
-  form input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
-  
-  button {
-    padding: 0.75rem 1.5rem;
-    background-color: #333366;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  </style>
-  
+  </div>
+</template>
+
+<script>
+export default {
+  name: "SignUp",
+};
+</script>
+
+<style scoped>
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5; /* Cream White */
+}
+
+.auth-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #2c3e50; /* Navy Blue */
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn-gold {
+  background-color: #f39c12; /* Gold */
+  border-color: #f39c12;
+  color: #fff;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background-color: #e08e0b; /* Darker Gold */
+}
+</style>

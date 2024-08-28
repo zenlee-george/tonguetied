@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">Tongue-Tied</a>
+      <a class="navbar-brand" href="/">
+        <img src="../assets/CustomCursor.svg" alt="Tongue-Tied Logo" class="navbar-logo">
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -71,6 +73,10 @@
 </template>
 
 <style scoped>
+.navbar-logo {
+  height: 100px; /* Adjust the height as needed */
+}
+
 .nav-link {
   transition: transform 0.3s ease, color 0.3s ease;
 }

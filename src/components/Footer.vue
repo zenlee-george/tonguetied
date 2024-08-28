@@ -5,7 +5,7 @@
         <nav class="footer-nav">
           <a href="#" class="footer-link">Privacy Policy</a>
           <a href="#" class="footer-link">Terms of Service</a>
-          <a href="#" class="footer-link">Contact Us</a>
+          <a href="/contact" class="footer-link">Contact Us</a>
         </nav>
       </div>
     </footer>

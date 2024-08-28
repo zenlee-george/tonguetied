@@ -4,7 +4,6 @@
     <div class="hero-section text-center py-5" data-aos="fade-up">
   <h1>Welcome to Tongue Tied</h1>
   <p>Discover our stylish collection of ties</p>
-  <a href="/products" class="btn btn-gold btn-lg">Shop Now</a>
 </div>
     <!-- Featured Products Section -->
     <div class="featured-products container my-5" data-aos="fade-up" data-aos-delay="100">
