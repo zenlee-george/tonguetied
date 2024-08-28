@@ -1,14 +1,13 @@
 <template>
   <div class="home-page">
     <!-- Hero Section -->
-    <div class="hero-section text-center py-5">
-      <h1>Welcome to Tongue Tied</h1>
-      <p>Discover our stylish collection of ties</p>
-      <a href="/products" class="btn btn-gold btn-lg">Shop Now</a>
-    </div>
-
+    <div class="hero-section text-center py-5" data-aos="fade-up">
+  <h1>Welcome to Tongue Tied</h1>
+  <p>Discover our stylish collection of ties</p>
+  <a href="/products" class="btn btn-gold btn-lg">Shop Now</a>
+</div>
     <!-- Featured Products Section -->
-    <div class="featured-products container my-5">
+    <div class="featured-products container my-5" data-aos="fade-up" data-aos-delay="100">
       <h2 class="text-center mb-4">Featured Products</h2>
       <div class="row">
         <div class="col-md-6 mb-4">
@@ -161,8 +160,24 @@ body {
 }
 
 .hero-section {
-  background-color: #2c3e50; /* Navy Blue */
+  background: url('https://example.com/hero-bg.jpg') no-repeat center center;
+  background-size: cover;
   color: #ffffff;
+  position: relative;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text contrast */
+}
+.hero-section h1, .hero-section p {
+  position: relative;
+  z-index: 1;
 }
 
 .btn-primary {
@@ -183,6 +198,23 @@ body {
 
 .sign-up-section {
   background-color: #ffffff; /* Cream White */
+  padding: 2rem 0;
+}
+
+.sign-up-section .form-control {
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sign-up-section button {
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.sign-up-section button:hover {
+  background-color: #f39c12; /* Gold */
+  color: #2c3e50; /* Navy Blue */
 }
 
 .card {
@@ -221,5 +253,47 @@ body {
 .btn-dark:hover {
   background-color: #1a242f; /* Darker Navy Blue */
   border-color: #1a242f;
+}
+
+.featured-products .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-products .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.explore-collection {
+  background-color: #f8f9fa; /* Light grey background for contrast */
+}
+
+.explore-collection .card {
+  transition: background-color 0.3s ease;
+}
+
+.explore-collection .card:hover {
+  background-color: #e9ecef; /* Slightly darker grey on hover */
+}
+
+.customer-reviews .card {
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px;
+}
+
+.customer-reviews .card-body {
+  text-align: center;
+}
+
+.customer-reviews .card-title {
+  font-weight: bold;
+}
+
+.customer-reviews .card-text {
+  color: #2c3e50; /* Navy Blue */
+}
+
+.customer-reviews .fa-star {
+  color: #f39c12; /* Gold */
 }
 </style>

@@ -3,11 +3,13 @@
     <Navbar />
     <router-view />
     <Footer />
+    <!-- <TieSpinner/> -->
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
+// import TieSpinner from './components/TieSpinner.vue';
 import Footer from './components/Footer.vue';
 
 export default {
@@ -15,6 +17,18 @@ export default {
   components: {
     Navbar,
     Footer,
+    // TieSpinner,
+  },
+  data() {
+    return {
+      isLoading: true, // Control the loading state
+    };
+  },
+  mounted() {
+    // Simulate data fetching or some delay
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
   },
 };
 </script>
