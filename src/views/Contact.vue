@@ -1,83 +1,88 @@
 <template>
-    <div class="contact">
-      <h1>Contact Us</h1>
-      <form @submit.prevent="submitForm">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input v-model="form.name" id="name" required />
+  <div class="contact-page">
+    <div class="container py-5">
+      <h1 class="text-center mb-4">Get in Touch</h1>
+      
+      <div class="row mb-5">
+        <div class="col-md-4 text-center">
+          <i class="fas fa-map-marker-alt contact-icon"></i>
+          <h5>Our Location</h5>
+          <p>25 Adderley Street, Suite 402, Cape Town, 8000, South Africa</p>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input v-model="form.email" id="email" type="email" required />
+        <div class="col-md-4 text-center">
+          <i class="fas fa-phone-alt contact-icon"></i>
+          <h5>Call Us</h5>
+          <p>+27 (21) 555-1234</p>
         </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea v-model="form.message" id="message" required></textarea>
+        <div class="col-md-4 text-center">
+          <i class="fas fa-envelope contact-icon"></i>
+          <h5>Email Us</h5>
+          <p>support@tonguetied.com</p>
         </div>
-        <button type="submit">Send Message</button>
-      </form>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form action="https://formspree.io/f/mdknblad" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </template>
-  
-  <script>
-  import { ref } from 'vue';
-  
-  export default {
-    name: 'Contact',
-    setup() {
-      const form = ref({
-        name: '',
-        email: '',
-        message: '',
-      });
-  
-      const submitForm = () => {
-        alert(`Message sent from ${form.value.name}`);
-        form.value.name = '';
-        form.value.email = '';
-        form.value.message = '';
-      };
-  
-      return {
-        form,
-        submitForm,
-      };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .contact {
-    padding: 2rem;
-    background-color: #ffffff;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333366;
-  }
-  
-  form input,
-  form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
-  
-  button {
-    padding: 0.75rem 1.5rem;
-    background-color: #333366;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  </style>
-  
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Contact",
+};
+</script>
+
+<style scoped>
+.contact-page {
+  background-color: #f5f5f5;
+  padding: 3rem 0;
+}
+
+.contact-icon {
+  font-size: 3rem;
+  color: #f39c12; /* Gold color for icons */
+  margin-bottom: 1rem;
+}
+
+h1, h5 {
+  color: #2c3e50; /* Navy Blue */
+}
+
+p {
+  color: #7f8c8d; /* Soft Gray */
+}
+
+.form-control {
+  border-color: #2c3e50; /* Navy Blue */
+}
+
+.btn-primary {
+  background-color: #2c3e50; /* Navy Blue */
+  border-color: #2c3e50;
+}
+
+.btn-primary:hover {
+  background-color: #1a242f; /* Darker Navy Blue */
+  border-color: #1a242f;
+}
+</style>
