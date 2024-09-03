@@ -38,5 +38,6 @@ body {
   margin: 0;
   font-family: 'Playfair Display', serif;
   background-color: #ffffff;
+  cursor: url('../src/assets/CustomCursor.png'), auto;
 }
 </style>

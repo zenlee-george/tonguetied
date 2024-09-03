@@ -7,7 +7,7 @@
         <div class="col-md-4 text-center">
           <i class="fas fa-map-marker-alt contact-icon"></i>
           <h5>Our Location</h5>
-          <p>25 Adderley Street, Suite 402, Cape Town, 8000, South Africa</p>
+          <p>19 Adderley Street, Suite 402, Cape Town, 8000, South Africa</p>
         </div>
         <div class="col-md-4 text-center">
           <i class="fas fa-phone-alt contact-icon"></i>
