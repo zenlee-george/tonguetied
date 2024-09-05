@@ -3,6 +3,7 @@ import cors from 'cors';
 import {config} from 'dotenv';
 import productRouter from './routes/productsRouter.js'
 import usersRouter from './routes/usersRouter.js'
+import cartRouter from './routes/cartRouter.js'
 
 config()
 const app = express();
@@ -19,6 +20,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/products', productRouter);
+
+app.use('/users', cartRouter)
 
 app.use('/users', usersRouter);
 

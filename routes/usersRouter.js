@@ -1,9 +1,10 @@
 import express from 'express'
-import {getUsers, getUser, insertUser, deleteUser, updateUser,loginUser} from '../controller/usersController.js'
+import {getUsers, getUser, insertUser, deleteUser, updateUser,loginUser, registerUser} from '../controller/usersController.js'
 import {checkUser} from '../middleware/authenticate.js'
 const router = express.Router()
 
-router.post('/login',checkUser,loginUser)
+router.post('/register',registerUser)
+router.post('/login',loginUser)
 router.
     route('/')
         .get(getUsers)

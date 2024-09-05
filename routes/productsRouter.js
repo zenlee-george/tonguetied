@@ -1,7 +1,7 @@
 import express from 'express'
 import {getProducts, getProduct, insertProduct, deleteProduct, updateProduct,} from '../controller/productController.js'
 const router = express.Router()
-import {verifyAToken} from '../middleware/authenticate.js'
+// import {verifyAToken} from '../middleware/authenticate.js'
 router.post('/cart,verifyAToken,addToCart')
 router.
     route('/')
@@ -10,6 +10,6 @@ router.
 router. 
     route('/:prodID')
         .get(getProduct)
-        .patch(updateProduct)
+        .put(updateProduct)
         .delete(deleteProduct)
     export default router
