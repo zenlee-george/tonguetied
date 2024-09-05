@@ -1,5 +1,7 @@
 import {getUsersDb, getUserDb, insertUserDb, deleteUserDb, updateUserDB} from '../model/usersDb.js'
 import {hash} from 'bcrypt'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 const getUsers = async(req,res)=>{
     res.json(await getUsersDb())
 }
@@ -32,7 +34,48 @@ const updateUser = async(req,res)=>{
     await updateUserDB(req.params.userID,firstName, lastName, userAge, Gender, userRole, emailAdd, userPass, userProfile)
     res.send('Update was successful')
 }
-const loginUser = (req,res)=>{
-    res.json({message:"You have signed in! !",token:req.body.token})
-}
-export {getUsers, getUser, insertUser, deleteUser, updateUser,loginUser}
+const loginUser = async (req, res) => {
+    const { emailAdd, password } = req.body;
+    try {
+      const normalizedEmail = emailAdd.toLowerCase();
+      const user = await findUserByEmail(normalizedEmail);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      const isMatch = await bcrypt.compare(password, user.userPass);
+      if (!isMatch) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+      const token = jwt.sign(
+        { emailAdd: user.emailAdd, userRole: user.userRole },
+        process.env.SECRET_KEY,
+        { expiresIn: '1h' }
+      );
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict',
+        maxAge: 60 * 60 * 1000 // 1 hour
+      });
+      res.status(200).json({ message: 'Login successful' });
+    } catch (error) {
+      console.error('Login Error:', error);
+      res.status(500).json({ message: 'Error logging in', error: error.message });
+    }
+  };
+  const registerUser = async (req, res) => {
+    const { firstName, lastName, userAge, Gender, userRole, emailAdd, userPass, userProfile } = req.body;
+    try {
+      const hashedPassword = await bcrypt.hash(userPass, 10);
+      const role = userRole === 'admin' ? 'admin' : 'user';
+      await insertUserDb(firstName, lastName, userAge, Gender, role, emailAdd, hashedPassword, userProfile);
+      const token = jwt.sign({ emailAdd, userRole: role }, process.env.SECRET_KEY, { expiresIn: '1h' });
+      res.status(201).json({ message: 'User registered successfully', token });
+    } catch (error) {
+      console.error('Error registering user:', error.message);
+      res.status(500).json({ message: 'Error registering user', error: error.message });
+    }
+  };
+  
+    
+export {getUsers, getUser, insertUser, deleteUser, updateUser,loginUser,registerUser}

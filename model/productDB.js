@@ -12,20 +12,15 @@ const insertProductDb = async(prodID,prodName,quantity,description,amount,catego
         INSERT INTO b7nbxqhkydsryvtfze9o.products
         (prodID,prodName,quantity,description,amount,category,prodUrl)
         VALUES (?,?,?,?,?,?,?)
-        `,[prodID,prodName,quantity,description,amount,category,prodUrl])
+        `,[prodID,prodName,quantity,description,amount,category,prodUrl]) 
 }
 const deleteProductDb = async(prodID) =>{
     await pool.query('DELETE FROM b7nbxqhkydsryvtfze9o.products WHERE prodID = ?', [prodID])
 }
-const updateProductDB = async (prodID,prodName,quantity,description,amount,category,prodUrl)=>{
+const updateProductDb = async (prodID,prodName,quantity,description,amount,category,prodUrl)=>{
     await pool.query('UPDATE b7nbxqhkydsryvtfze9o.products SET prodName = ?, quantity = ?, description = ?, amount = ?,category = ?,prodUrl = ?   WHERE prodID = ?',[prodName,quantity,description,amount,category,prodUrl,prodID]
     )
 }
 
-// const addToCartDB = async (prodID,user_id)=>{
-//     await pool(`INSERT INTO b7nbxqhkydsryvtfze9o.products
-//         (prodID,user_id)
-//         VALUES (?,?)`)
-//         ,[prodID,user_id]
-// }
-export {getProductsDb, getProductDb, insertProductDb, deleteProductDb, updateProductDB,}
+
+export {getProductsDb, getProductDb, insertProductDb, deleteProductDb, updateProductDb,}

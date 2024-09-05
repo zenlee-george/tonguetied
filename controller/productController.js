@@ -1,4 +1,4 @@
-import {getProductsDb, getProductDb, insertProductDb, deleteProductDb, updateProductDB,} from '../model/productDb.js'
+import {getProductsDb, getProductDb, insertProductDb, deleteProductDb, updateProductDb,} from '../model/productDb.js'
 import { getUserDb } from '../model/usersDb.js'
 
  const getProducts = async(req,res)=>{
@@ -26,7 +26,7 @@ const updateProduct = async(req,res)=>{
     amount ? amount=amount: amount = product.amount
     category ? category=category: category = product.category
     prodUrl ? prodUrl=prodUrl: prodUrl = product.prodUrl
-    await updateProductDB(req.params.prodID,prodName,quantity,description,amount,category,prodUrl)
+    await updateProductDb(req.params.prodID,prodName,quantity,description,amount,category,prodUrl)
     res.send('Update Product was successful')
 }
 
