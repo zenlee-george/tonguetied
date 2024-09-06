@@ -4,12 +4,14 @@ import {config} from 'dotenv';
 import productRouter from './routes/productsRouter.js'
 import usersRouter from './routes/usersRouter.js'
 import cartRouter from './routes/cartRouter.js'
+import cookieParser from 'cookie-parser';
 
 config()
 const app = express();
 const port =process.env.PORT || 7777
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
     origin: 'http://localhost:8080',
     credentials: true

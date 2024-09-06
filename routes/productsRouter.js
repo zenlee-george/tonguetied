@@ -1,7 +1,9 @@
 import express from 'express'
 import {getProducts, getProduct, insertProduct, deleteProduct, updateProduct,} from '../controller/productController.js'
+import {authMiddleware} from '../middleware/authenticate.js'
 const router = express.Router()
-// import {verifyAToken} from '../middleware/authenticate.js'
+
+router.use(authMiddleware)
 router.post('/cart,verifyAToken,addToCart')
 router.
     route('/')
