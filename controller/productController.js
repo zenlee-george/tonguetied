@@ -1,5 +1,4 @@
 import {getProductsDb, getProductDb, insertProductDb, deleteProductDb, updateProductDb,} from '../model/productDb.js'
-import { getUserDb } from '../model/usersDb.js'
 
  const getProducts = async(req,res)=>{
     res.json(await getProductsDb())
