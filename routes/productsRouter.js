@@ -3,7 +3,6 @@ import {getProducts, getProduct, insertProduct, deleteProduct, updateProduct,} f
 import {authMiddleware} from '../middleware/authenticate.js'
 const router = express.Router()
 
-router.use(authMiddleware)
 router.post('/cart,verifyAToken,addToCart')
 router.
     route('/')
@@ -11,7 +10,7 @@ router.
         .post(insertProduct)
 router. 
     route('/:prodID')
-        .get(getProduct)
-        .put(updateProduct)
-        .delete(deleteProduct)
+        .get(authMiddleware,getProduct)
+        .put(authMiddleware,updateProduct)
+        .delete(authMiddleware,deleteProduct)
     export default router

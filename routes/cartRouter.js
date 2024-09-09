@@ -3,18 +3,17 @@ import {getCartItems, getCartItemID, addCartItem, editCartItem, deleteItems, del
 import {authMiddleware} from '../middleware/authenticate.js'
 
 const router = express.Router();
-router.use(authMiddleware)
 
 router.
     route('/:userID/carts')
-        .get(getCartItems)
-        .post(addCartItem)
-        .delete(deleteItems)
+        .get(authMiddleware,getCartItems)
+        .post(authMiddleware,addCartItem)
+        .delete(authMiddleware,deleteItems)
 
 router.
     route('/:userID/carts/:cartID')
-        .get(getCartItemID)
-        .patch(editCartItem)
-        .delete(deleteItem)
+        .get(authMiddleware,getCartItemID)
+        .patch(authMiddleware,editCartItem)
+        .delete(authMiddleware,deleteItem)
 
 export default router;
