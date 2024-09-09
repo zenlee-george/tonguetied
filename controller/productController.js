@@ -1,4 +1,4 @@
-import {getProductsDb, getProductDb, insertProductDb, deleteProductDb, updateProductDb,} from '../model/productDb.js'
+import {getProductsDb, getProductDb, insertProductDb, deleteProductDb, updateProductDb} from '../model/productDb.js'
 
  const getProducts = async(req,res)=>{
     res.json(await getProductsDb())
