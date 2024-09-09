@@ -57,4 +57,13 @@ const generateToken = (user) => {
   return token;
 };
 
-export {authMiddleware,verifyAToken,generateToken}
+function adminMiddleware(req, res, next) {
+  console.log('User:', req.user); // Log user object
+  if (req.user && req.user.userRole === 'admin') {
+    return next();
+  } else {
+    return res.status(403).json({ message: 'Forbidden: Admin access only' });
+  }
+}
+
+export {authMiddleware,verifyAToken,generateToken,adminMiddleware}
