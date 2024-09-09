@@ -51,11 +51,15 @@
       <div class="team text-center" data-aos="fade-up" data-aos-delay="1000">
         <h2>Meet Our Team</h2>
         <div class="team-members">
-          <div class="team-member">
+          <div class="team-member left" data-aos="fade-left">
             <img src="https://via.placeholder.com/150" alt="Team Member" />
             <p><strong>[Team Member Name]</strong> - [Position]</p>
           </div>
-          <div class="team-member">
+          <div class="team-member center" data-aos="fade-up">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <p><strong>[Team Member Name]</strong> - [Position]</p>
+          </div>
+          <div class="team-member right" data-aos="fade-right">
             <img src="https://via.placeholder.com/150" alt="Team Member" />
             <p><strong>[Team Member Name]</strong> - [Position]</p>
           </div>
@@ -71,6 +75,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import AOS from 'aos';
@@ -88,8 +93,8 @@ export default {
 
 <style scoped>
 .about {
-  background-color: #f5f5f5; /* Cream White */
-  color: #2c3e50; /* Navy Blue */
+  background-color: #ADEBFF; /* Light Sky Blue */
+  color: #00171F; /* Dark Navy */
   padding: 4rem 2rem;
 }
 
@@ -103,8 +108,8 @@ export default {
 }
 
 h1, h2 {
-  font-family: 'Playfair Display', serif;
-  color: #2c3e50; /* Navy Blue */
+  font-family: 'Irish Grover', cursive;
+  color: #00171F; /* Dark Navy */
   text-align: center;
 }
 
@@ -114,7 +119,7 @@ h1 {
 
 h2 {
   font-size: 2rem;
-  border-bottom: 2px solid #f39c12; /* Gold */
+  border-bottom: 2px solid #FDF4E3; /* Light yellow */
   padding-bottom: 0.5rem;
 }
 
@@ -129,8 +134,9 @@ p {
 
 .history-image {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 15px;
   margin-top: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 ul {
@@ -144,17 +150,41 @@ li {
 }
 
 li strong {
-  color: #f39c12; /* Gold */
+  color: #FDF4E3; /* Light yellow */
 }
 
 .team-members {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-around;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .team-member {
   text-align: center;
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: #FDF4E3; /* Light yellow */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation-fill-mode: both;
+}
+
+.team-member.left {
+  animation: floatInLeft 5s ease-out;
+}
+
+.team-member.center {
+  animation: floatInUp 5s ease-out;
+}
+
+.team-member.right {
+  animation: floatInRight 5s ease-out;
+}
+
+.team-member:hover {
+  transform: scale(1.05) rotate(-3deg);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .team-member img {
@@ -163,11 +193,55 @@ li strong {
 }
 
 .contact-call-to-action a {
-  color: #f39c12; /* Gold */
+  color: #FDF4E3; /* Light yellow */
   text-decoration: none;
 }
 
 .contact-call-to-action a:hover {
   text-decoration: underline;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(80px); /* Start further down */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px); /* Start further left */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(80px); /* Start further right */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80px); /* Start further down */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

@@ -3,13 +3,11 @@
     <Navbar />
     <router-view />
     <Footer />
-    <!-- <TieSpinner/> -->
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
-// import TieSpinner from './components/TieSpinner.vue';
 import Footer from './components/Footer.vue';
 
 export default {
@@ -17,7 +15,6 @@ export default {
   components: {
     Navbar,
     Footer,
-    // TieSpinner,
   },
   data() {
     return {
@@ -33,11 +30,10 @@ export default {
 };
 </script>
 
-<style>
-body {
+<style scoped>
+#app {
   margin: 0;
-  font-family: 'Playfair Display', serif;
-  background-color: #ffffff;
-  cursor: url('../src/assets/CustomCursor.png'), auto;
+  font-family: 'Irish Grover', cursive;
+  background-color: #ADEBFF;
 }
 </style>

@@ -1,21 +1,18 @@
 <template>
   <div class="home-page">
     <!-- Hero Section -->
-    <div class="hero-section text-center py-5" data-aos="fade-up">
-  <h1>Welcome to Tongue Tied</h1>
-  <p>Discover our stylish collection of ties</p>
-</div>
+    <div class="hero-section text-center py-5" data-aos="zoom-in">
+      <h1 data-aos="fade-down" data-aos-duration="1000">Welcome to Tongue Tied</h1>
+      <p data-aos="fade-up" data-aos-delay="200">Discover our stylish collection of ties</p>
+    </div>
+
     <!-- Featured Products Section -->
-    <div class="featured-products container my-5" data-aos="fade-up" data-aos-delay="100">
-      <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="featured-products container my-5" data-aos="fade-up" data-aos-delay="300">
+      <h2 class="text-center mb-4" data-aos="zoom-in" data-aos-delay="100">Featured Products</h2>
       <div class="row">
         <div class="col-md-6 mb-4">
-          <div class="card">
-            <img
-              src="https://via.placeholder.com/500"
-              class="card-img-top"
-              alt="Product 1"
-            />
+          <div class="card" data-aos="flip-left" data-aos-duration="1000">
+            <img src="https://via.placeholder.com/500" class="card-img-top" alt="Product 1" />
             <div class="card-body">
               <h5 class="card-title">Classic Silk Tie</h5>
               <p class="card-text">R450.99</p>
@@ -24,15 +21,9 @@
           </div>
         </div>
         <div class="col-md-3 mb-4">
-          <div class="card">
-            <div class="badge bg-gold position-absolute mt-2 ms-2">
-              New Arrival
-            </div>
-            <img
-              src="https://via.placeholder.com/300"
-              class="card-img-top"
-              alt="Product 2"
-            />
+          <div class="card" data-aos="flip-right" data-aos-duration="1000">
+            <div class="badge bg-light-blue position-absolute mt-2 ms-2">New Arrival</div>
+            <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product 2" />
             <div class="card-body">
               <h5 class="card-title">Stylish Tie</h5>
               <p class="card-text">R349.99</p>
@@ -41,12 +32,8 @@
           </div>
         </div>
         <div class="col-md-3 mb-4">
-          <div class="card">
-            <img
-              src="https://via.placeholder.com/300"
-              class="card-img-top"
-              alt="Product 3"
-            />
+          <div class="card" data-aos="flip-left" data-aos-duration="1000">
+            <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product 3" />
             <div class="card-body">
               <h5 class="card-title">Slim Wool Blend Tie</h5>
               <p class="card-text">R499.99</p>
@@ -58,27 +45,23 @@
     </div>
 
     <!-- Explore Our Collection Section -->
-    <div class="explore-collection container my-5">
-      <h2 class="text-center mb-4">Explore Our Collection</h2>
+    <div class="explore-collection container my-5" data-aos="fade-up" data-aos-delay="400">
+      <h2 class="text-center mb-4" data-aos="zoom-in">Explore Our Collection</h2>
       <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4" data-aos="zoom-in-up">
           <div class="card">
             <div class="card-body text-center">
               <h5 class="card-title">Formal Ties</h5>
-              <p class="card-text">
-                Elevate your formal look with our range of ties
-              </p>
+              <p class="card-text">Elevate your formal look with our range of ties</p>
               <a href="/products" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
         </div>
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4" data-aos="zoom-in-up" data-aos-delay="200">
           <div class="card">
             <div class="card-body text-center">
               <h5 class="card-title">Casual Ties</h5>
-              <p class="card-text">
-                Stay stylish even on casual days
-              </p>
+              <p class="card-text">Stay stylish even on casual days</p>
               <a href="/products" class="btn btn-primary">Shop Now</a>
             </div>
           </div>
@@ -87,21 +70,15 @@
     </div>
 
     <!-- Sign Up for Updates Section -->
-    <div class="sign-up-section py-5">
+    <div class="sign-up-section py-5" data-aos="zoom-in-up" data-aos-delay="200">
       <div class="container">
         <h2 class="text-center mb-4">Sign Up for Updates</h2>
         <div class="d-flex justify-content-center">
           <div class="col-md-6">
-            <input
-              type="email"
-              class="form-control"
-              placeholder="Enter your email"
-            />
-            <small class="form-text text-muted">
-              We promise not to spam
-            </small>
+            <input type="email" class="form-control" placeholder="Enter your email" />
+            <small class="form-text text-muted">We promise not to spam</small>
             <div class="text-center mt-3">
-              <button class="btn btn-dark">Subscribe</button>
+              <button class="btn btn-dark bounce-animation">Subscribe</button>
             </div>
           </div>
         </div>
@@ -109,34 +86,86 @@
     </div>
 
     <!-- Customer Reviews Section -->
-    <div class="customer-reviews container my-5">
+    <div class="customer-reviews container my-5" data-aos="zoom-in">
       <h2 class="text-center mb-4">Customer Reviews</h2>
-      <div class="row">
-        <div class="col-md-6 mb-4">
-          <div class="card">
+      <div class="row g-3">
+        <div class="col-md-4" data-aos="flip-left">
+          <div class="review-card card text-center swing">
+            <div class="review-avatar">
+              <i class="fas fa-user-circle fa-5x"></i>
+            </div>
             <div class="card-body">
               <h5 class="card-title">Anna</h5>
-              <p class="card-text">
-                <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-                  class="fas fa-star"
-                ></i>
-                <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                Love the quality and variety of ties
-              </p>
+              <p class="card-text"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></p>
+              <p class="card-text">Love the quality and variety of ties.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-6 mb-4">
-          <div class="card">
+
+        <!-- Review 2 -->
+        <div class="col-md-4">
+          <div class="review-card card text-center playful-card swing">
+            <div class="review-avatar">
+              <i class="fas fa-user-circle fa-5x"></i>
+            </div>
             <div class="card-body">
               <h5 class="card-title">Mike</h5>
               <p class="card-text">
-                <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-                  class="fas fa-star"
-                ></i>
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                Great customer service and fast delivery
               </p>
+              <p class="card-text">Great customer service and fast delivery.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="col-md-4">
+          <div class="review-card card text-center swing ">
+            <div class="review-avatar">
+              <i class="fas fa-user-circle fa-5x"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Samantha</h5>
+              <p class="card-text">
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+              </p>
+              <p class="card-text">Absolutely love the designs and fabric quality!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="col-md-6">
+          <div class="review-card card text-center playful-card swing">
+            <div class="review-avatar">
+              <i class="fas fa-user-circle fa-5x"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">John</h5>
+              <p class="card-text">
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+              </p>
+              <p class="card-text">Fast shipping, and the tie fits perfectly.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="col-md-6">
+          <div class="review-card card text-center swing">
+            <div class="review-avatar">
+              <i class="fas fa-user-circle fa-5x"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Natalie</h5>
+              <p class="card-text">
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+              </p>
+              <p class="card-text">Amazing collection! Will definitely buy more.</p>
             </div>
           </div>
         </div>
@@ -152,147 +181,189 @@ export default {
 </script>
 
 <style scoped>
-/* Apply color palette */
 
 body {
-  background-color: #f5f5f5; /* Cream White */
+  background-color: #ADEBFF; /* Light Sky Blue */
+  color: #00171F; /* Dark Navy */
 }
 
 .hero-section {
-  background: url('https://example.com/hero-bg.jpg') no-repeat center center;
+  background: url('https://images.pexels.com/photos/6764932/pexels-photo-6764932.jpeg?auto=compress&cs=tinysrgb&w=600') no-repeat center center;
   background-size: cover;
-  color: #ffffff;
+  color: #FFFFFF;
   position: relative;
+  padding: 100px 0;
+  border-radius: 20px;
 }
 
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text contrast */
-}
 .hero-section h1, .hero-section p {
-  position: relative;
-  z-index: 1;
+  font-weight: bold;
+  font-size: 3rem;
 }
 
 .btn-primary {
-  background-color: #2c3e50; /* Navy Blue */
-  border-color: #2c3e50;
-}
-
-.btn-gold {
-  background-color: #f39c12; /* Gold */
-  border-color: #f39c12;
-  color: #2c3e50; /* Navy Blue */
-}
-
-.btn-gold:hover {
-  background-color: #e08e0b; /* Darker Gold */
-  border-color: #e08e0b;
-}
-
-.sign-up-section {
-  background-color: #ffffff; /* Cream White */
-  padding: 2rem 0;
-}
-
-.sign-up-section .form-control {
-  border-radius: 50px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.sign-up-section button {
-  border-radius: 50px;
-  padding: 0.5rem 1.5rem;
-  transition: background-color 0.3s ease;
-}
-
-.sign-up-section button:hover {
-  background-color: #f39c12; /* Gold */
-  color: #2c3e50; /* Navy Blue */
-}
-
-.card {
-  border: 1px solid #e0e0e0; /* Light border */
-}
-
-.card img {
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 1.25rem;
-}
-
-.card .badge {
-  background-color: #f39c12; /* Gold */
-}
-
-.card-title, .card-text {
-  color: #2c3e50; /* Navy Blue */
-}
-
-.form-control {
-  border-color: #2c3e50; /* Navy Blue */
-}
-
-.form-text {
-  color: #6c757d; /* Neutral */
+  background-color: #003459; /* Navy Blue */
+  border-color: #003459;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 0.75rem 1.5rem;
 }
 
 .btn-dark {
-  background-color: #2c3e50; /* Navy Blue */
-  border-color: #2c3e50;
+  background-color: #00171F; /* Dark Navy */
+  border-color: #00171F;
+  color: #ADEBFF; /* Light Sky Blue */
+  border-radius: 30px;
+  padding: 0.75rem 1.5rem;
 }
 
-.btn-dark:hover {
-  background-color: #1a242f; /* Darker Navy Blue */
-  border-color: #1a242f;
+.sign-up-section {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.featured-products .card {
+.form-control {
+  border-radius: 25px;
+  border: 2px solid #003459;
+  padding: 1rem;
+}
+
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.featured-products .card:hover {
+.card:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
-.explore-collection {
-  background-color: #f8f9fa; /* Light grey background for contrast */
-}
-
-.explore-collection .card {
-  transition: background-color 0.3s ease;
-}
-
-.explore-collection .card:hover {
-  background-color: #e9ecef; /* Slightly darker grey on hover */
-}
-
-.customer-reviews .card {
-  border: 1px solid #ddd; /* Light border */
-  border-radius: 8px;
-}
-
-.customer-reviews .card-body {
+.card-title {
+  color: #00171F; /* Dark Navy */
   text-align: center;
 }
 
-.customer-reviews .card-title {
+.badge.bg-light-blue {
+  background-color: #ADEBFF;
+  color: #00171F; /* Dark Navy */
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
-.customer-reviews .card-text {
-  color: #2c3e50; /* Navy Blue */
+/* Playful customer review styling */
+.customer-reviews .review-card {
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.customer-reviews .review-avatar {
+  margin-bottom: 1rem;
+}
+
+.customer-reviews .review-card:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.customer-reviews .playful-card {
+  background-color: #FDF4E3; /* Light yellow for contrast */
+}
+
+.customer-reviews .fa-user-circle {
+  color: #003459; /* Navy blue for icon color */
 }
 
 .customer-reviews .fa-star {
   color: #f39c12; /* Gold */
+}
+
+.customer-reviews .card-title {
+  font-size: 1.5rem;
+}
+
+.customer-reviews .card-text {
+  font-size: 1rem;
+}
+
+.explore-collection .card:hover {
+  background-color: #ADEBFF; /* Light Sky Blue */
+}
+
+.featured-products .card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 23, 31, 0.2);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Remove automatic swing animation from .swing */
+.swing {
+  transition: transform 0.3s ease;
+}
+
+/* Trigger swing animation on hover */
+.swing:hover {
+  animation: swing 1.5s ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* Keyframes for swing animation */
+@keyframes swing {
+  20% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+/* AOS Animations */
+[data-aos="flip-left"], [data-aos="flip-right"] {
+  transform: perspective(800px) rotateY(0deg);
+}
+
+/* Button Animation */
+.bounce-animation {
+  animation: bounce 2s infinite;
+}
+
+/* Avatar Swing Animation */
+.swing {
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .customer-reviews .col-md-4:nth-child(2) {
+    transform: translateY(20px);
+  }
+  .customer-reviews .col-md-6 {
+    margin-bottom: 30px;
+  }
 }
 </style>
