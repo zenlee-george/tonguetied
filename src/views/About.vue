@@ -12,7 +12,7 @@
         <h2>Our History</h2>
         <div class="history-content">
           <p>
-            Founded in [Year], Tongue-Tied started as a small boutique with a vision to redefine men's accessories. Our journey began with a passion for craftsmanship and a dedication to providing stylish, high-quality ties. Over the years, we have grown into a renowned name in the fashion industry, known for our elegance and attention to detail.
+            Founded in 2024, Tongue-Tied started as a small boutique with a vision to redefine men's accessories. Our journey began with a passion for craftsmanship and a dedication to providing stylish, high-quality ties. Over the years, we have grown into a renowned name in the fashion industry, known for our elegance and attention to detail.
           </p>
           <img src="https://via.placeholder.com/800x400" alt="Our Story" class="history-image" />
         </div>
@@ -24,7 +24,7 @@
         <p>
           "At Tongue-Tied, we believe that a tie is more than just an accessory; it’s a statement of individuality and sophistication. We take pride in every tie we create, ensuring it meets the highest standards of quality and design. Thank you for being a part of our journey." 
           <br />
-          <strong>- [Founder's Name]</strong>
+          <strong>- Zen Lee George</strong>
         </p>
       </div>
 

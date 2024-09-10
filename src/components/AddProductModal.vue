@@ -1,133 +1,158 @@
 <template>
-  <div class="products-page">
-    <!-- Parallax Section -->
-    <div class="parallax-section">
-      <div class="parallax-content">
-        <h1 class="text-center">Our Products</h1>
-        <p class="text-center">Explore our wide range of ties</p>
+  <div class="modal-overlay" v-if="show">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Add Product</h5>
+        <button class="close" @click="$emit('hide')">&times;</button>
       </div>
-    </div>
-
-    <!-- Filters Section -->
-    <div class="container filters-section">
-      <div class="filters">
-        <input v-model="searchQuery" class="form-control search-input" placeholder="Search for ties..." />
-        
-        <select v-model="selectedCategory" class="form-select category-select">
-          <option value="">All Categories</option>
-          <option v-for="category in categories" :key="category">{{ category }}</option>
-        </select>
-        
-        <select v-model="selectedPriceRange" class="form-select price-select">
-          <option value="">All Prices</option>
-          <option value="low">Price: Low to High</option>
-          <option value="high">Price: High to Low</option>
-        </select>
-      </div>
-
-      <div class="spinner" v-if="loading">Loading...</div>
-
-      <!-- Products Section -->
-      <div v-else class="product-list row">
-        <div v-for="product in filteredProducts" :key="product.id" class="col-md-4 mb-4">
-          <div class="product-item">
-            <router-link :to="`/products/${product.id}`">
-              <img :src="product.image" alt="Product Image" class="product-image" />
-              <h5>{{ product.name }}</h5>
-            </router-link>
-            <p class="product-price">{{ product.price | currency }}</p>
-            <p class="product-category">{{ product.category }}</p>
+      <div class="modal-body">
+        <form @submit.prevent="submitProduct">
+          <div class="mb-3">
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" id="productName" v-model="productName" class="form-control" required />
           </div>
-        </div>
+
+          <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" id="quantity" v-model="quantity" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" v-model="description" class="form-control" rows="3" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="amount" class="form-label">Amount (Price)</label>
+            <input type="number" id="amount" v-model="amount" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select id="category" v-model="category" class="form-select" required>
+              <option value="" disabled>Select Category</option>
+              <option v-for="cat in availableCategories" :key="cat">{{ cat }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="prodUrl" class="form-label">Product Image URL</label>
+            <input type="url" id="prodUrl" v-model="prodUrl" class="form-control" required />
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
-
 export default {
-  name: "Products",
+  props: {
+    show: Boolean,
+  },
   data() {
     return {
-      searchQuery: '',
-      selectedCategory: '',
-      selectedPriceRange: '',
+      productName: '',
+      quantity: '',
+      description: '',
+      amount: '',
+      category: '',
+      prodUrl: '',
+      availableCategories: ['Formal', 'Casual', 'Luxury'], // Categories can be fetched from API
     };
   },
-  computed: {
-    ...mapState(['products', 'categories', 'loading']),
-    ...mapGetters(['allProducts', 'allCategories']),
-    filteredProducts() {
-      let filtered = this.allProducts;
-
-      if (this.searchQuery) {
-        filtered = filtered.filter(product => 
-          product.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
-      }
-
-      if (this.selectedCategory) {
-        filtered = filtered.filter(product => product.category === this.selectedCategory);
-      }
-
-      if (this.selectedPriceRange === 'low') {
-        filtered = filtered.sort((a, b) => a.price - b.price);
-      } else if (this.selectedPriceRange === 'high') {
-        filtered = filtered.sort((a, b) => b.price - a.price);
-      }
-
-      return filtered;
-    }
-  },
   methods: {
-    ...mapActions(['fetchProducts']),
+    submitProduct() {
+      const newProduct = {
+        productName: this.productName,
+        quantity: this.quantity,
+        description: this.description,
+        amount: this.amount,
+        category: this.category,
+        prodUrl: this.prodUrl,
+      };
+
+      // Emit event to parent with product details
+      this.$emit('add-product', newProduct);
+
+      // Reset form
+      this.resetForm();
+      this.$emit('hide');
+    },
+    resetForm() {
+      this.productName = '';
+      this.quantity = '';
+      this.description = '';
+      this.amount = '';
+      this.category = '';
+      this.prodUrl = '';
+    },
   },
-  mounted() {
-    this.fetchProducts();
-  }
 };
 </script>
 
-  
-  <style scoped>
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 12;
-  }
-  
-  .modal-content {
-    background: #fff;
-    border-radius: 8px;
-    padding: 2rem;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .modal-header .close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-  }
-  
-  .modal-body {
-    margin-top: 1rem;
-  }
-  </style>
-  
+<style scoped>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h5 {
+  margin: 0;
+}
+
+.close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.modal-body {
+  margin-top: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  padding: 0.75rem 2rem;
+  background-color: #2c3e50;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #34495e;
+}
+</style>

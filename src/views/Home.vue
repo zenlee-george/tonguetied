@@ -10,34 +10,14 @@
     <div class="featured-products container my-5" data-aos="fade-up" data-aos-delay="300">
       <h2 class="text-center mb-4" data-aos="zoom-in" data-aos-delay="100">Featured Products</h2>
       <div class="row">
-        <div class="col-md-6 mb-4">
+        <div v-for="(product, index) in featuredProducts" :key="product.prodID" class="col-md-4 mb-4">
           <div class="card" data-aos="flip-left" data-aos-duration="1000">
-            <img src="https://via.placeholder.com/500" class="card-img-top" alt="Product 1" />
+            <!-- Image Switching -->
+            <img :src="getImage(product, index)" class="card-img-top" alt="Product Image" @click="toggleImage(index)" />
             <div class="card-body">
-              <h5 class="card-title">Classic Silk Tie</h5>
-              <p class="card-text">R450.99</p>
-              <a href="/products" class="btn btn-primary">View Product</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-4">
-          <div class="card" data-aos="flip-right" data-aos-duration="1000">
-            <div class="badge bg-light-blue position-absolute mt-2 ms-2">New Arrival</div>
-            <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product 2" />
-            <div class="card-body">
-              <h5 class="card-title">Stylish Tie</h5>
-              <p class="card-text">R349.99</p>
-              <a href="/products" class="btn btn-primary">View Product</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 mb-4">
-          <div class="card" data-aos="flip-left" data-aos-duration="1000">
-            <img src="https://via.placeholder.com/300" class="card-img-top" alt="Product 3" />
-            <div class="card-body">
-              <h5 class="card-title">Slim Wool Blend Tie</h5>
-              <p class="card-text">R499.99</p>
-              <a href="/products" class="btn btn-primary">View Product</a>
+              <h5 class="card-title">{{ product.prodName }}</h5>
+              <p class="card-text">{{ product.amount || currency }}</p>
+              <a :href="`/products/${product.prodID}`" class="btn btn-primary">View Product</a>
             </div>
           </div>
         </div>
@@ -175,11 +155,53 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
 export default {
-  name: "Home",
+  name: 'Home',
+  setup() {
+    const apiURL = 'https://tonguetied.onrender.com/products';
+    const featuredProducts = ref([]);
+    const currency = 'R';
+
+    const fetchFeaturedProducts = async () => {
+      try {
+        const response = await axios.get(apiURL);
+        const allProducts = response.data;
+        featuredProducts.value = allProducts.filter(product => product.category === 'Featured');
+        // Initialize image state for toggling
+        featuredProducts.value.forEach(product => {
+          product.showFirstImage = true;
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const toggleImage = (index) => {
+      const product = featuredProducts.value[index];
+      product.showFirstImage = !product.showFirstImage;
+    };
+
+    const getImage = (product, index) => {
+      // For simplicity, toggling between images
+      return product.showFirstImage ? product.prodUrl : product.prodUrl.replace('v1', 'v2');
+    };
+
+    onMounted(() => {
+      fetchFeaturedProducts();
+    });
+
+    return {
+      featuredProducts,
+      currency,
+      toggleImage,
+      getImage,
+    };
+  },
 };
 </script>
-
 <style scoped>
 
 body {
@@ -188,7 +210,7 @@ body {
 }
 
 .hero-section {
-  background: url('https://images.pexels.com/photos/6764932/pexels-photo-6764932.jpeg?auto=compress&cs=tinysrgb&w=600') no-repeat center center;
+  background: url('https://zenlee-george.github.io/hostedimages/Tie-photo.jpeg') no-repeat center center;
   background-size: cover;
   color: #FFFFFF;
   position: relative;
@@ -200,6 +222,22 @@ body {
   font-weight: bold;
   font-size: 3rem;
 }
+
+/* Featured Products */
+.featured-products .card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.featured-products .card-img-top {
+  transition: transform 0.3s ease;
+}
+
+.featured-products .card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
 
 .btn-primary {
   background-color: #003459; /* Navy Blue */

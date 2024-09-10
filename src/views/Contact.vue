@@ -2,7 +2,7 @@
   <div class="contact-page">
     <div class="container py-5">
       <h1 class="text-center mb-4" data-aos="fade-up">Get in Touch</h1>
-      
+
       <div class="row mb-5" data-aos="fade-up" data-aos-delay="200">
         <div class="col-md-4 text-center">
           <a href="https://www.google.com/maps?q=19+Adderley+Street,+Suite+402,+Cape+Town,+8000,+South+Africa" target="_blank" rel="noopener noreferrer">
@@ -30,15 +30,15 @@
       <div class="row justify-content-center">
         <div class="col-md-8" data-aos="fade-up" data-aos-delay="800">
           <form action="https://formspree.io/f/mdknblad" method="POST">
-            <div class="mb-3">
+            <div class="mb-3 text-center">
               <label for="name" class="form-label">Full Name</label>
               <input type="text" class="form-control" id="name" name="name" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-center">
               <label for="email" class="form-label">Email Address</label>
               <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-center">
               <label for="message" class="form-label">Message</label>
               <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
             </div>
@@ -94,6 +94,13 @@ h1, h5 {
 
 p {
   color: #7F8C8D; /* Soft Gray */
+}
+
+/* Centered Labels */
+.form-label {
+  font-weight: bold;
+  text-align: center;
+  display: block;
 }
 
 .form-control {
