@@ -10,6 +10,7 @@ config()
 const app = express();
 const port =process.env.PORT || 7777
 
+app.use(express.static('static'))
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Tongue-Tied API</title>
 </head>
 <body>
@@ -95,6 +95,46 @@
                 <td>DELETE</td>
                 <td>/products/:id</td>
                 <td>deletes a product on the database</td>
+            </tr>
+        </table>
+    </div>
+    <div class="Carts">
+        <h2>Products</h2>
+        <table>
+            <tr>
+                <th>HTPP Methods</th>
+                <th>Path</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users/:userID/cart</td>
+                <td>retursns all the Carts</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users/:userID/cart/:cartID</td>
+                <td>returns cart based on their id </td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/users/:userID/cart</td>
+                <td>adds a item to cart</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>/users/:userID/cart/:cartID</td>
+                <td>Updates a item in cart</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/users/:userID/cart/:cartID</td>
+                <td>deletes a item in cart</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/users/:userID/cart/:cartID</td>
+                <td>deletes all items in the cart</td>
             </tr>
         </table>
     </div>
