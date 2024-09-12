@@ -14,6 +14,7 @@ export default createStore({
     categories:null,
     loading: false,
     error: null,
+    token: cookies.get('authToken') || null,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -28,6 +29,10 @@ export default createStore({
     SET_ERROR(state, error) {
       state.error = error;
     },
+    SET_TOKEN(state, token) {
+      state.token = token;
+      cookies.set('authToken', token, '1d')
+    }
   },
   actions: {
     async fetchProducts({ commit }) {

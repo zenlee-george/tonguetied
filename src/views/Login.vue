@@ -1,81 +1,107 @@
 <template>
-  <div class="auth-page">
-    <div class="auth-card">
-      <h2 class="text-center">Login</h2>
-      <form action="https://formspree.io/f/mdknblad" method="POST">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control" required />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-control" required />
-        </div>
-        <button type="submit" class="btn btn-gold btn-block">Login</button>
-      </form>
-      <p class="text-center mt-3">
-        Don't have an account? <router-link to="/signup">Sign up here</router-link>.
-      </p>
-    </div>
+  <div class="login">
+    <h2>Login</h2>
+    <form @submit.prevent="handleLogin">
+      <div>
+        <label for="emailAdd">Email:</label>
+        <input type="email" id="emailAdd" v-model="form.emailAdd" required>
+      </div>
+      <div>
+        <label for="userPass">Password:</label>
+        <input type="password" id="userPass" v-model="form.userPass" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
+
 export default {
   name: "Login",
+  setup() {
+    const router = useRouter();
+    const form = ref({
+      emailAdd: '',
+      userPass: ''
+    });
+    const errorMessage = ref('');
+
+    const handleLogin = async () => {
+  try {
+    const response = await axios.post('https://tonguetied.onrender.com/users/login', form.value);
+    Swal.fire({
+      title: 'Success!',
+      text: response.data.message,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      cookies.set('authToken', response.data.token, '1h'); // Store the token in cookies
+      router.push('/home'); // Redirect to a different page after login, adjust path as needed
+    });
+  } catch (error) {
+    console.error('Login Error:', error); // Log the error to the console
+    errorMessage.value = error.response?.data?.message || 'An error occurred'; // Display error message
+  }
+};
+
+    return {
+      form,
+      errorMessage,
+      handleLogin
+    };
+  }
 };
 </script>
 
 <style scoped>
-.auth-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5; /* Cream White */
-}
-
-.auth-card {
-  background-color: #ffffff;
+/* Add your cartoonish styles here */
+.login {
+  max-width: 500px;
+  margin: auto;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.text-center {
-  text-align: center;
+h2 {
+  color: #ff6347;
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  margin-bottom: 0.5rem;
+label {
   display: block;
-  color: #2c3e50; /* Navy Blue */
+  margin: 0.5rem 0;
 }
 
-.form-control {
+input {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.btn-gold {
-  background-color: #f39c12; /* Gold */
-  border-color: #f39c12;
-  color: #fff;
-  padding: 0.75rem;
-  width: 100%;
-  border-radius: 4px;
+button {
+  background-color: #ff6347;
+  color: white;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.btn-gold:hover {
-  background-color: #e08e0b; /* Darker Gold */
+button:hover {
+  background-color: #ff4500;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
 }
 </style>

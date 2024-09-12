@@ -8,6 +8,9 @@ import Cart from '../views/Cart.vue';
 import Contact from '../views/Contact.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
+import ManageUsers from '@/views/ManageUsers.vue';
+import ManageProducts from '@/views/ManageProducts.vue';
+import ViewAnalytics from '@/views/ViewAnalytics.vue';
 
 const routes = [
   { path: '/', component: Home },
@@ -19,6 +22,9 @@ const routes = [
   { path: '/contact', component: Contact },
   { path: '/login', component: Login },
   { path: '/signup', component: Signup },
+  { path: '/admin/manage-users', component: ManageUsers },
+  { path: '/admin/manage-products', component: ManageProducts },
+  { path: '/admin/view-analytics', component: ViewAnalytics }
 ];
 
 const router = createRouter({

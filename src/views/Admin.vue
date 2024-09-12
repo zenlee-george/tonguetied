@@ -4,37 +4,11 @@
     <div class="parallax-section">
       <div class="parallax-content">
         <h1 class="text-center mb-4" data-aos="fade-up">Admin Dashboard</h1>
-        <!-- Buttons to trigger modals -->
+        <!-- Buttons to navigate to different admin pages -->
         <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="200">
-          <button class="btn btn-primary btn-lg mx-2" @click="showAddUserModal = true">Add User</button>
-          <button class="btn btn-primary btn-lg mx-2" @click="showAddProductModal = true">Add Product</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Features Section -->
-    <div class="container my-5">
-      <div class="row text-center">
-        <div class="col-md-4" data-aos="zoom-in">
-          <div class="admin-feature-card">
-            <i class="fas fa-users fa-3x"></i>
-            <h3>Manage Users</h3>
-            <p>View, update, and manage users in the system.</p>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-          <div class="admin-feature-card">
-            <i class="fas fa-box fa-3x"></i>
-            <h3>Manage Products</h3>
-            <p>View, update, and manage products in the store.</p>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
-          <div class="admin-feature-card">
-            <i class="fas fa-chart-line fa-3x"></i>
-            <h3>View Analytics</h3>
-            <p>Track store performance and user behavior.</p>
-          </div>
+          <router-link to="/admin/manage-users" class="btn btn-primary btn-lg mx-2">Manage Users</router-link>
+          <router-link to="/admin/manage-products" class="btn btn-primary btn-lg mx-2">Manage Products</router-link>
+          <router-link to="/admin/view-analytics" class="btn btn-primary btn-lg mx-2">View Analytics</router-link>
         </div>
       </div>
     </div>
@@ -96,31 +70,15 @@ export default {
   background-color: #f5f5f5;
 }
 
-/* Features Section */
-.admin-feature-card {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+/* Buttons styling */
+.btn-primary {
+  background-color: #f39c12;
+  border-color: #f39c12;
+  color: #fff;
 }
 
-.admin-feature-card:hover {
-  transform: translateY(-10px);
-}
-
-.admin-feature-card i {
-  color: #f39c12;
-  margin-bottom: 1rem;
-}
-
-.admin-feature-card h3 {
-  color: #00171F;
-  margin-bottom: 1rem;
-}
-
-.admin-feature-card p {
-  color: #7F8C8D;
+.btn-primary:hover {
+  background-color: #e08e0b;
 }
 
 /* Modals styling */
