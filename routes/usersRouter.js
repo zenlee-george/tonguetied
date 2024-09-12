@@ -13,6 +13,6 @@ router.
 router.
     route('/:userID')
         .get(getUser)
-        .delete(deleteUser)
+        .delete(adminMiddleware,deleteUser)
         .patch(adminMiddleware,updateUser)
 export default router
