@@ -32,17 +32,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.send('Welcome to the API. Use /users to get a list of users, /user/:id to get a specific user, /register to create a new user, and /products to get a list of products.');
 });
-// User Routes
+
 app.use('/users', usersRouter);
-// Product Routes
+
 app.use('/products', productsRouter);
-// Order Routes
-app.use('/users', cartRouter); // Changed from '/user' to '/order' for clarity
-// Error handling middleware for 404 (Not Found)
+
+app.use('/users', cartRouter); 
+
 app.use((req, res, next) => {
     res.status(404).send('Not Found');
 });
-// Start server
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

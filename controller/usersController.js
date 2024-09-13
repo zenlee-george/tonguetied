@@ -54,10 +54,10 @@ const loginUser = async (req, res) => {
       res.cookie('jwt', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Strict',
+        sameSite: 'None',
         maxAge: 60 * 60 * 1000 // 1 hour
       });
-      res.status(200).json({ message: 'Login successful' });
+      res.status(200).json({ message: 'Login successful',token: token, userID: user.userID });
     } catch (error) {
       console.error('Login Error:', error);
       res.status(500).json({ message: 'Error logging in', error: error.message });
