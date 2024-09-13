@@ -48,6 +48,7 @@ const verifyAToken = (roles = []) => {
       }
   };
 };
+
 const generateToken = (user) => {
   const payload = {
       emailAdd: user.email,
