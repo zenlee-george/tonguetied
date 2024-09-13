@@ -5,12 +5,12 @@
       <form @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="emailAdd">Email:</label>
-          <input type="email" id="emailAdd" v-model="form.emailAdd" class="form-control" required>
+          <input type="email" id="emailAdd" v-model="email" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="userPass">Password:</label>
           <div class="password-input-wrapper">
-            <input :type="isPasswordVisible ? 'text' : 'password'" id="userPass" v-model="form.userPass" class="form-control" required>
+            <input :type="isPasswordVisible ? 'text' : 'password'" id="userPass" v-model="password" class="form-control" required>
             <i :class="isPasswordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'" @click="togglePasswordVisibility"></i>
           </div>
         </div>
@@ -25,57 +25,50 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useRouter } from 'vue-router';
+import { mapActions } from 'vuex';
 
 export default {
-  name: "Login",
-  setup() {
-    const router = useRouter();
-    const form = ref({
-      emailAdd: '',
-      userPass: ''
-    });
-    const errorMessage = ref('');
-    const isPasswordVisible = ref(false);
-
-    // Toggle password visibility
-    const togglePasswordVisibility = () => {
-      isPasswordVisible.value = !isPasswordVisible.value;
-    };
-
-    // Handle login
-    const handleLogin = async () => {
-      try {
-        const response = await axios.post('https://tonguetied.onrender.com/users/login', form.value);
-        Swal.fire({
-          title: 'Success!',
-          text: response.data.message,
-          icon: 'success',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          router.push('/dashboard'); // Redirect to a dashboard or main page after successful login
-        });
-      } catch (error) {
-        errorMessage.value = error.response?.data?.message || 'An error occurred';
-      }
-    };
-
+  data() {
     return {
-      form,
-      errorMessage,
-      handleLogin,
-      isPasswordVisible,
-      togglePasswordVisibility
+      email: '',
+      password: '',
+      errorMessage: '',
+      isPasswordVisible: false
     };
+  },
+  methods: {
+  ...mapActions(['login']),
+  async handleLogin() {
+    try {
+      await this.login({ emailAdd: this.email, password: this.password });
+      Swal.fire({
+        title: 'Success!',
+        text: 'Login successful!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        this.$router.push('/dashboard'); // Redirect after login
+      });
+    } catch (error) {
+      console.error('Login error:', error); // Log error details
+      Swal.fire({
+        title: 'Error!',
+        text: error.response?.data?.message || 'Login failed',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    }
   }
-};
+},
+    togglePasswordVisibility() {
+      this.isPasswordVisible = !this.isPasswordVisible;
+    }
+  }
+
 </script>
 
 <style scoped>
-/* Styling to match the home page design */
 .auth-page {
   display: flex;
   justify-content: center;

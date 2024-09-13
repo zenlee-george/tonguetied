@@ -11,13 +11,20 @@ import Signup from '../views/Signup.vue';
 import ManageUsers from '@/views/ManageUsers.vue';
 import ManageProducts from '@/views/ManageProducts.vue';
 import ViewAnalytics from '@/views/ViewAnalytics.vue';
-
+import store from '@/store';
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
   { path: '/products', component: Products },
   { path: '/products/:prodID', component: ProductDetail, props: true },
-  { path: '/admin', component: Admin },
+  { path: '/admin', component: Admin,beforeEnter: (to, from, next) => {
+    const userID = store.state.userID; // Assuming userRole is stored in Vuex
+    if (userID === 21) {
+      next(); // Allow access
+    } else {
+      next('/'); // Redirect to home or any other page
+    }
+  } },
   { path: '/cart', component: Cart },
   { path: '/contact', component: Contact },
   { path: '/login', component: Login },

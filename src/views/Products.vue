@@ -38,7 +38,7 @@
               <img :src="product.prodUrl" alt="Product Image" class="product-image" />
               <h5>{{ product.prodName }}</h5>
             </router-link>
-            <p class="product-price">{{ product.amount || currency }}</p>
+            <p class="product-price">R {{ currency && product.amount  }}</p>
             <p class="product-category">{{ product.category }}</p>
 
             <!-- View More Button -->
@@ -82,6 +82,7 @@ export default {
     const selectedPriceRange = ref('');
     const categories = ref([]);
     const cart = ref([]);
+    const currency = "R";
 
     const fetchProducts = async () => {
       try {
@@ -156,6 +157,7 @@ export default {
       selectedPriceRange,
       filteredProducts,
       categories,
+      currency,
       addToCart,
       toggleDescription,
     };
@@ -166,7 +168,7 @@ export default {
 <style scoped>
 /* Parallax Section */
 .parallax-section {
-  background: url('https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+  background: url('https://zenlee-george.github.io/hostedimages/products.png') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 60vh;
