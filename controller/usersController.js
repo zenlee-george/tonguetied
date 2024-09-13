@@ -35,34 +35,42 @@ const updateUser = async(req,res)=>{
     res.send('Update was successful')
 }
 const loginUser = async (req, res) => {
-    const { emailAdd, password } = req.body;
-    try {
-      const normalizedEmail = emailAdd.toLowerCase();
-      const user = await findUserByEmail(normalizedEmail);
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-      const isMatch = await bcrypt.compare(password, user.userPass);
-      if (!isMatch) {
-        return res.status(401).json({ message: 'Invalid credentials' });
-      }
-      const token = jwt.sign(
-        { emailAdd: user.emailAdd, userRole: user.userRole },
-        process.env.SECRET_KEY,
-        { expiresIn: '1h' }
-      );
-      res.cookie('jwt', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'None',
-        maxAge: 60 * 60 * 1000 // 1 hour
-      });
-      res.status(200).json({ message: 'Login successful',token: token, userID: user.userID });
-    } catch (error) {
-      console.error('Login Error:', error);
-      res.status(500).json({ message: 'Error logging in', error: error.message });
+  const { emailAdd, password } = req.body;
+  try {
+    console.log('Login attempt with email:', emailAdd); // Log attempt
+    const normalizedEmail = emailAdd.toLowerCase();
+    const user = await findUserByEmail(normalizedEmail);
+    
+    if (!user) {
+      console.log('User not found:', normalizedEmail);
+      return res.status(404).json({ message: 'User not found' });
     }
-  };
+    
+    const isMatch = await bcrypt.compare(password, user.userPass);
+    if (!isMatch) {
+      console.log('Invalid credentials for:', normalizedEmail);
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+    
+    const token = jwt.sign(
+      { emailAdd: user.emailAdd, userRole: user.userRole },
+      process.env.SECRET_KEY,
+      { expiresIn: '1h' }
+    );
+    
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'None',
+      maxAge: 60 * 60 * 1000 // 1 hour
+    });
+    
+    res.status(200).json({ message: 'Login successful', token: token, userID: user.userID });
+  } catch (error) {
+    console.error('Login Error:', error);
+    res.status(500).json({ message: 'Error logging in', error: error.message });
+  }
+};
   const registerUser = async (req, res) => {
     const { firstName, lastName, userAge, Gender, userRole, emailAdd, userPass, userProfile } = req.body;
     try {
