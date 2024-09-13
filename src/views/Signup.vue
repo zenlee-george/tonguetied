@@ -27,7 +27,6 @@
           <label for="userRole">Role:</label>
           <select id="userRole" v-model="form.userRole" class="form-control" required>
             <option value="user">User</option>
-            <option value="admin">Admin</option>
           </select>
         </div>
         <div class="form-group">
