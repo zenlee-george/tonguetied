@@ -23,6 +23,7 @@ app.use(cors({
             callback(new Error('Not allowed by CORS'));
         }
     },
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true // Enable cookies and other credentials
 }));
 // Body parser for JSON and URL-encoded payloads
