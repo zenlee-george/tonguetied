@@ -109,73 +109,80 @@
   </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue';
-  import axios from 'axios';
-  
-  const products = ref([]);
-  const newProduct = ref({
-    prodName: '',
-    quantity: null,
-    description: '',
-    amount: null,
-    category: '',
-    prodUrl: ''
-  });
-  const showAddProductForm = ref(false);
-  const showEditProductForm = ref(false);
-  const currentProduct = ref(null);
-  
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('https://tonguetied.onrender.com/products');
-      products.value = response.data;
-    } catch (error) {
-      console.error('Error fetching products:', error.message);
-    }
-  };
-  
-  const addProduct = async () => {
-    try {
-      const response = await axios.post('https://tonguetied.onrender.com/products', newProduct.value);
-      products.value.push(response.data);
-      newProduct.value = { prodName: '', quantity: null, description: '', amount: null, category: '', prodUrl: '' };
-      showAddProductForm.value = false;
-    } catch (error) {
-      console.error('Error adding product:', error.message);
-    }
-  };
-  
-  const editProduct = (product) => {
-    currentProduct.value = { ...product };
-    showEditProductForm.value = true;
-  };
-  
-  const updateProduct = async () => {
-    try {
-      if (currentProduct.value) {
-        const response = await axios.put(`https://tonguetied.onrender.com/products/${currentProduct.value.prodID}`, currentProduct.value);
-        const index = products.value.findIndex(p => p.prodID === currentProduct.value.prodID);
-        if (index !== -1) {
-          products.value[index] = response.data;
-        }
-        showEditProductForm.value = false;
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const apiURL = 'https://tonguetied.onrender.com/products'; // Define your API base URL here
+
+const products = ref([]);
+const newProduct = ref({
+  prodName: '',
+  quantity: null,
+  description: '',
+  amount: null,
+  category: '',
+  prodUrl: ''
+});
+const showAddProductForm = ref(false);
+const showEditProductForm = ref(false);
+const currentProduct = ref(null);
+
+// Fetch Products
+const fetchProducts = async () => {
+  try {
+    const response = await axios.get(apiURL); // Use apiURL for the GET request
+    products.value = response.data;
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+  }
+};
+
+// Add Product
+const addProduct = async () => {
+  try {
+    const response = await axios.post(apiURL, newProduct.value); // Use apiURL for the POST request
+    products.value.push(response.data);
+    newProduct.value = { prodName: '', quantity: null, description: '', amount: null, category: '', prodUrl: '' };
+    showAddProductForm.value = false;
+  } catch (error) {
+    console.error('Error adding product:', error.message);
+  }
+};
+
+// Edit Product
+const editProduct = (product) => {
+  currentProduct.value = { ...product };
+  showEditProductForm.value = true;
+};
+
+// Update Product
+const updateProduct = async () => {
+  try {
+    if (currentProduct.value) {
+      const response = await axios.put(`${apiURL}/${currentProduct.value.prodID}`, currentProduct.value); // Use apiURL for the PUT request
+      const index = products.value.findIndex(p => p.prodID === currentProduct.value.prodID);
+      if (index !== -1) {
+        products.value[index] = response.data;
       }
-    } catch (error) {
-      console.error('Error updating product:', error.message);
+      showEditProductForm.value = false;
     }
-  };
-  
-  const deleteProduct = async (productId) => {
-    try {
-      await axios.delete(`https://tonguetied.onrender.com/products/${productId}`);
-      products.value = products.value.filter(p => p.prodID !== productId);
-    } catch (error) {
-      console.error('Error deleting product:', error.message);
-    }
-  };
-  
-  onMounted(fetchProducts);
-  </script>
+  } catch (error) {
+    console.error('Error updating product:', error.message);
+  }
+};
+
+// Delete Product
+const deleteProduct = async (productId) => {
+  try {
+    await axios.delete(`${apiURL}/${productId}`); // Use apiURL for the DELETE request
+    products.value = products.value.filter(p => p.prodID !== productId);
+  } catch (error) {
+    console.error('Error deleting product:', error.message);
+  }
+};
+
+onMounted(fetchProducts);
+</script>
   
   
   <style scoped>
