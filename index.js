@@ -13,9 +13,17 @@ const port =process.env.PORT || 7777
 app.use(express.static('static'))
 app.use(express.json());
 app.use(cookieParser());
+const allowedOrigins = ['http://localhost:8080', 'https://screenscape-e5d1b.web.app'];
 app.use(cors({
-    origin: 'http://localhost:8080',
-    credentials: true
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true // Enable cookies and other credentials
 }));
 
 app.get('/', (req, res) => {
